@@ -14,8 +14,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        /* $books = Book::latest()->get(); */
-        return view('book.index');
+        $libros = Book::get();
+        return view('book.index', compact('libros'));
     }
 
     /**
@@ -23,9 +23,10 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Book $libro)
     {
-        return view('book.create');
+        
+        return view('book.create',  compact('libro'));
     }
 
     /**
@@ -36,29 +37,24 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        Book::create(
+            [
+                'titulo' => $request->titulo,
+                'autor'  => $request->autor,
+                'precio' => $request->precio,
+            ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Book  $book
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Book $book)
-    {
-        //
+            return redirect('/libro');         
     }
-
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function edit(Book $book)
+    public function edit(Book $libro)
     {
-        //
+        return view('book.edit', compact('libro'));
     }
 
     /**
@@ -68,9 +64,11 @@ class BookController extends Controller
      * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Book $book)
+    public function update(Request $request, Book $libro)
     {
-        //
+        $libro ->update($request->all());
+
+        return redirect('/libro');
     }
 
     /**
@@ -79,8 +77,9 @@ class BookController extends Controller
      * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Book $book)
+    public function destroy(Book $libro)
     {
-        //
+        $libro -> delete();
+        return back()->with('status', 'Eliminado con exito');;
     }
 }

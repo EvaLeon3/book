@@ -13,24 +13,15 @@ use App\Http\Controllers\BookController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-/* Route::get('/', function () {
+
+//pasa la vista 
+Route::get('/', function () {
     return view('welcome');
-}); */
+}); 
+//pasa todas las rutas de recursos 
+Route::resource('libro', 'App\Http\Controllers\BookController');
  
+/* Route::get('/', [BookController::class, 'index']); 
+Route::post('books', [BookController::class, 'store'])->name('books.store');
+Route::delete('books', [BookController::class, 'destroy'])->name('books.destroy');  */
 
-/*  Route::get('/', 'App\Http\Controllers\BookController@index'); */
-
-Route::get('/', [BookController::class, 'create']);
-Route::get('book', [BookController::class, 'store'])->name('book.store');
-Route::get('book', [BookController::class, 'destroy'])->name('book.destroy');
-
-/* Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
- */
