@@ -69,7 +69,14 @@ class BookController extends Controller
      */
     public function edit(Book $libro)
     {
-        return view('book.edit', compact('libro'));
+        $autors = Autor::select('id', 'nombre', 'apellido')->get();
+
+        return view('book.edit',  
+        [
+            'autor'=>$autors,
+            'libro' => $libro,
+        ]);
+       /*  return view('book.edit', compact('libro')); */
     }
 
     /**
