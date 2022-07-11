@@ -6,11 +6,12 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header"> 
-                        LIBROS REGISTRADOS
+                        AUTORES REGISTRADOS
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <a href="{{ route('libro.create')}}" class="btn btn-outline-success" type="button"> Agregar libro </a>
+                        <a href="{{ route('autor.create')}}" class="btn btn-outline-success" type="button"> Crear nuevo registro </a>
                         </div>
-                    </div>                       
+                    </div>
+                        
                     <div class="card-body">
                         @if (session('status'))
                             <div class="alert alert-success" role="alert">
@@ -21,26 +22,24 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Titulo</th>
-                                    <th>Precio</th>
-                                    <th>Fecha prestamo</th>
-                                    <th>Id autor</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Fecha de nacimiento</th>
                                     <th colspan="2"> &nbsp;</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($libros as $libro)
+                                @foreach ($autores as $autor)
                                 <tr>
-                                    <td>{{ $libro->id }} </td>
-                                    <td>{{ $libro->titulo }} </td>
-                                    <td>{{ $libro->precio }} </td>
-                                    <td>{{ $libro->created_at }} </td>
-                                    <td>{{ $libro->autors_id }} </td>
+                                    <td>{{ $autor->id }} </td>
+                                    <td>{{ $autor->nombre }} </td>
+                                    <td>{{ $autor->apellido}} </td>
+                                    <td>{{ $autor->fecha }} </td>
                                     <td>
-                                        <a href="{{ route('libro.edit', $libro->id) }}" class="btn btn-primary btn-sm" type="button"> Editar</a>    
+                                        <a href="{{ route('autor.edit', $autor->id) }}" class="btn btn-primary btn-sm" type="button"> Editar</a>    
                                     </td>
                                     <td>
-                                        <form action="{{ route('libro.destroy', $libro) }}" method="POST">
+                                        <form action="{{ route('autor.destroy', $autor) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <input

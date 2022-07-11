@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Autor;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -25,8 +26,13 @@ class BookController extends Controller
      */
     public function create(Book $libro)
     {
-        
-        return view('book.create',  compact('libro'));
+        $autors = Autor::select('id', 'nombre', 'apellido')->get();
+
+        return view('book.create',  
+        [
+            'autor'=>$autors,
+            'libro' => $libro,
+        ]);
     }
 
     /**
@@ -37,11 +43,20 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'titulo' => 'required',
+            'autors_id' =>'required',
+            'precio' => 'required'
+        ]);
+
         Book::create(
             [
                 'titulo' => $request->titulo,
-                'autor'  => $request->autor,
+                'autors_id'  => $request->autors_id,
                 'precio' => $request->precio,
+               
+
             ]);
 
             return redirect('/libro');         
