@@ -23,9 +23,12 @@
               <li class="nav-item">
                 <a class="nav-link" href="{{route('libro.index')}}">Libros</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{route('catalogo.index')}}">Municipios</a>
+              </li>
             </ul>
             <ul class="navar-nav ms-auto">
-                <a class=" btn btn-outline-info" aria-current="page" href="/home"> Login</a>
+                <a class=" btn btn-outline-info" aria-current="page" href="/app"> Login</a>
             </ul>
           </div>
         </div>

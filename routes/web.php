@@ -16,18 +16,28 @@ use App\Http\Controllers\BookController;
 |
 */
 
-//pasa la vista 
+//pasa la vista welcome
 Route::get('/', function () {
     return view('welcome');
 }); 
+
+//pasa la vista home
 Route::get('home', function () {
     return view('home');
 }); 
+
+/* Route::get('munic', function () {
+    return view('munic');
+});  */
+
 //pasa todas las rutas de libros
 Route::resource('libro', 'App\Http\Controllers\BookController');
 
 //pasa las rutas de autores
 Route::resource('autor', 'App\Http\Controllers\AutorController');
+
+//pasa las rutas de los municipios 
+Route::resource('catalogo', 'App\Http\Controllers\CatalogoController');
  
 /* Route::get('/', [BookController::class, 'index']); 
 Route::post('books', [BookController::class, 'store'])->name('books.store');

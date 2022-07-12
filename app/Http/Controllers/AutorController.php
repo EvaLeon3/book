@@ -49,7 +49,7 @@ class AutorController extends Controller
             'fecha' => $request->fecha,
         ]);
 
-        return redirect('/autor');
+        return back();
     }
 
     /**

@@ -26,7 +26,7 @@
          <select class="form-select" aria-label="Default select example" name="autors_id">
             <option selected>Selecciona el autor</option>
             @foreach($autor as $autor)
-                <option value="{{old('id',$autor->id)}}">{{$autor->nombre}}</option>
+                <option value="{{$autor->id}}">{{$autor->nombre}}</option>
             @endforeach
         </select>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
